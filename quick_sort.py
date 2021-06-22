@@ -1,10 +1,14 @@
-a = [8, 1, 2, 7, 1, 5, 2, 7, 4, 4]
+'''n=int(input())
+a=input().split()
+a=[int(i) for i in a]'''
+
+a=[8, 1, 2, 7, 1, 5, 2, 7, 4, 4]
 
 def partition(a, s, e):
         x = a[e]
         i = s - 1
         for j in range(s, e):
-            print(i, j)
+            #print(i, j)
             if a[j] <= x:
                 i = i + 1
                 a[i], a[j] = a[j], a[i]
@@ -18,7 +22,7 @@ def qsort(a, s, e):
         for i in a: 
             arr_string+=str(i)
             arr_string+=" "
-        print(arr_string)
+        print(arr_string.strip())
 
         qsort(a, s, p-1)
         qsort(a, p+1, e)
