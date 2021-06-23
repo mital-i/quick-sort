@@ -1,30 +1,36 @@
-'''n=int(input())
-a=input().split()
-a=[int(i) for i in a]'''
+#quick_sort3.py
 
 a=[8, 1, 2, 7, 1, 5, 2, 7, 4, 4]
+def qSort(a, low, high):
+    if low >= high:
+        return 
 
-def partition(a, s, e):
-        x = a[e]
-        i = s - 1
-        for j in range(s, e):
-            #print(i, j)
-            if a[j] <= x:
-                i = i + 1
-                a[i], a[j] = a[j], a[i]
-        a[i+1], a[e] = a[e], a[i+1]
-        return i + 1
+    j=high-2
+    i=low
 
-def qsort(a, s, e):
-    if s < e:
-        p = partition(a, s, e)
-        arr_string = ""
-        for i in a: 
-            arr_string+=str(i)
-            arr_string+=" "
-        print(arr_string.strip())
+    piv=a[j+1]
 
-        qsort(a, s, p-1)
-        qsort(a, p+1, e)
+    found_swap=False
+    while j>i+2:
+        if a[i] <= piv: 
+            i=i+1    
         
-qsort(a, 0, 9)
+        if a[i] > piv:
+            found_swap=False
+            while not found_swap:
+                if a[j] > piv: 
+                    j=j-1
+                elif a[j] <= piv: 
+                    found_swap=True
+                    a[i], a[j] = a[j], a[i]
+                    i=i+1
+                    j=j-1
+
+    a[i+1], a[high-1] = a[high-1], a[i+1]
+
+    print(a)
+    
+    qSort(a, low, i+1)
+    qSort(a, i+high-2, high)
+
+qSort(a, 0, 10)
